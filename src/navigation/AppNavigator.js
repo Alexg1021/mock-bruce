@@ -5,6 +5,7 @@ import OrderScreen from '../screens/OrderScreen';
 import ViewOrdersScreen from '../screens/ViewOrders';
 import UserScreen from '../screens/UserScreen';
 import SingleMealScreen from '../screens/SingleMeal';
+import FavoriteScreen from '../screens/FavoriteScreen';
 
 // Orders Stack to inject into my Tabs
 const OrderStack = createStackNavigator();
@@ -27,6 +28,7 @@ const TabNavigator = () => {
       <Tabs.Screen name='Order' component={OrderNavigator} />
       <Tabs.Screen name='View Orders' component={ViewOrdersScreen} />
       <Tabs.Screen name='User Profile' component={UserScreen} />
+      <Tabs.Screen name='Favorites' component={FavoriteScreen} />
     </Tabs.Navigator>
   );
 };
