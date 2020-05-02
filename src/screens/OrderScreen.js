@@ -7,12 +7,14 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Switch,
 } from 'react-native';
 
 const OrderScreen = props => {
   const { state } = useContext(MealContext);
   const meals = state.meals;
 
+  
   return (
     <View>
       <View style={styles.header}>
@@ -31,6 +33,7 @@ const OrderScreen = props => {
                   });
                 }}>
                 <Text style={styles.title}>{itemData.item.title}</Text>
+                <Text style={styles.title}>{itemData.item.affordability}</Text>
               </TouchableOpacity>
             </View>
           );
