@@ -8,12 +8,19 @@ import {
   FlatList,
   TouchableOpacity,
   Switch,
+  Button,
+  Alert,
 } from 'react-native';
 
 const OrderScreen = props => {
   const { state } = useContext(MealContext);
   const meals = state.meals;
 
+  const showAlert = () =>{
+    Alert.alert(
+       'Your Favorite Meal is Added!'
+    )
+  };
   
   return (
     <View>
@@ -34,6 +41,7 @@ const OrderScreen = props => {
                 }}>
                 <Text style={styles.title}>{itemData.item.title}</Text>
                 <Text style={styles.title}>{itemData.item.affordability}</Text>
+                <Button title='Add To Favorites' onPress = {showAlert} />
               </TouchableOpacity>
             </View>
           );
