@@ -16,7 +16,6 @@ const OrderNavigator = () => {
     <OrderStack.Navigator>
       <OrderStack.Screen name='Order' component={OrderScreen} />
       <OrderStack.Screen name='Single Meal' component={SingleMealScreen} />
-      {/* <OrderStack.Screen name='Favorite Screen' component={FavoriteScreen} /> */}
     </OrderStack.Navigator>
   );
 };
@@ -30,7 +29,7 @@ const TabNavigator = () => {
       <Tabs.Screen name='Order' component={OrderNavigator} />
       <Tabs.Screen name='View Orders' component={ViewOrdersScreen} />
       <Tabs.Screen name='User Profile' component={UserScreen} />
-      {/* <Tabs.Screen name='Favorites Screen' component={FavoriteScreen} /> */}
+      <Tabs.Screen name='Favorites Screen' component={FavoriteScreen} />
     </Tabs.Navigator>
   );
 };
