@@ -12,9 +12,9 @@ export default class App extends Component {
   }
   
   onLogin() {
-    const { username, password } = this.state;
+    const { username } = this.state;
 
-    Alert.alert('Credentials', `${username} + ${password}`);
+    Alert.alert('You Are Logged In, proceed to Order', `${username}`);
   }
 
   render() {
