@@ -1,4 +1,4 @@
-import React, { createContext, useState, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { MEALS } from '../data/dummy-data';
 
 // Set my state
@@ -15,7 +15,6 @@ const mealReducer = (state, action) => {
   switch (action.type) {
     case 'add_to_order':
       return { ...state, orders: state.orders.concat(action.order) };
-
     case 'remove_order':
       return {
         ...state,
