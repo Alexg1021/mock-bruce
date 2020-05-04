@@ -14,7 +14,7 @@ export default class App extends Component {
   onLogin() {
     const { username } = this.state;
 
-    Alert.alert('You Are Logged In, proceed to Order', `${username}`);
+    Alert.alert('Logged In, Proceed to Order', `${username}`);
   }
 
   render() {
