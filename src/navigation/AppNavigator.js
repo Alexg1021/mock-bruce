@@ -6,6 +6,8 @@ import ViewOrdersScreen from '../screens/ViewOrders';
 import UserScreen from '../screens/UserScreen';
 import SingleMealScreen from '../screens/SingleMeal';
 import FavoriteScreen from '../screens/FavoriteScreen';
+import LoginScreen from '../screens/LoginScreen';
+
 
 
 // Orders Stack to inject into my Tabs
@@ -26,6 +28,7 @@ const Tabs = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tabs.Navigator>
+      <Tabs.Screen name='Login' component={LoginScreen} />
       <Tabs.Screen name='Order' component={OrderNavigator} />
       <Tabs.Screen name='View Orders' component={ViewOrdersScreen} />
       <Tabs.Screen name='User Profile' component={UserScreen} />
