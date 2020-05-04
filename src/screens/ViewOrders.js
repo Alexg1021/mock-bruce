@@ -5,7 +5,6 @@ import MealContext from '../context/Context';
 const ViewOrdersScreen = props => {
   const { state, removeOrder } = useContext(MealContext);
   const orders = state.orders;
-  console.log('in view orders', orders);
 
   return (
     <View style={styles.container}>
