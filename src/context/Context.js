@@ -1,8 +1,7 @@
-// Imports from React
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useState, useReducer } from 'react';
 import { MEALS } from '../data/dummy-data';
 
-// create state
+// Set my state
 const initialState = {
   meals: MEALS,
   orders: [],
@@ -11,50 +10,56 @@ const initialState = {
 // Initiate Context
 const MealContext = createContext();
 
-// Create a Reducer
+// Add Reducer if using reducer
 const mealReducer = (state, action) => {
   switch (action.type) {
-    case 'change_name':
-      const updatedMeals = state.meals;
-      updatedMeals.forEach(meal => {
-        if (meal.id === action.meal.id) {
-          meal.title = 'changed name';
-        }
-      });
-      return { ...state, meals: updatedMeals };
+    case 'add_to_order':
+      return { ...state, orders: state.orders.concat(action.order) };
 
-    case 'add_meal_to_order':
-      // run some functionality
-      console.log('this works!!!!!', action.meal.title);
+    case 'remove_order':
+      return {
+        ...state,
+        orders: state.orders.filter(order => order.id !== action.orderId),
+      };
 
+    case 'get_orders':
       return state;
+
+    // create set_favorite case that returns the updated state
+
     default:
       return state;
   }
 };
 
-// creat a Provider
+// Create provider component and export not as default!
 export const MealProvider = ({ children }) => {
-  // const []
+  // in component useState or useReducer for functionality
   const [state, dispatch] = useReducer(mealReducer, initialState);
 
-  const changeName = meal => {
-    dispatch({ type: 'change_name', meal });
+  const addToOrder = order => {
+    let createOrderId = Math.random().toString(36).substring(2, 15);
+    order.id = createOrderId;
+    dispatch({ type: 'add_to_order', order });
   };
 
-  const addMealToOrder = meal => {
-    dispatch({ type: 'add_meal_to_order', meal });
+  const getOrders = () => {
+    dispatch({ type: 'get_orders' });
   };
 
+  const removeOrder = orderId => {
+    dispatch({ type: 'remove_order', orderId });
+  };
+
+  // Add a setFavorite method that updates the favorite property in meal model from false to true
+  // mealId should be passed as the parameter and passed through the provider to be accessed
+
+  // return provider
   return (
-    <MealContext.Provider value={{ state, changeName, addMealToOrder }}>
+    <MealContext.Provider value={{ state, addToOrder, getOrders, removeOrder }}>
       {children}
     </MealContext.Provider>
   );
 };
 
-// exporting my Context
-
 export default MealContext;
-
-// Going export my provider into my App.js file
