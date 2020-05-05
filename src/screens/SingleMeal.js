@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
-import MealContext from '../context/Context';
+import { Context } from '../context/Context';
 
 const SingleMealScreen = props => {
-  const { state, addToOrder } = useContext(MealContext);
+  const { state, addToOrder } = useContext(Context);
   const meal = state.meals.find(meal => meal.id === props.route.params.mealId);
   const [quantity, setQuantity] = useState('1');
   const order = {};

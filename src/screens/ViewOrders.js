@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
-import MealContext from '../context/Context';
+import { Context } from '../context/Context';
 
 const ViewOrdersScreen = props => {
-  const { state, removeOrder } = useContext(MealContext);
+  const { state, removeOrder } = useContext(Context);
   const orders = state.orders;
   // {id, quantity, meal:{}}
 
