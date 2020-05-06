@@ -5,6 +5,7 @@ import { Context } from '../context/Context';
 const ViewOrdersScreen = props => {
   const { state, removeOrder } = useContext(Context);
   const orders = state.orders;
+  console.log('orders', state.orders);
   // {id, quantity, meal:{}}
 
   return (

@@ -1,4 +1,5 @@
 import createDataContext from './indexContext';
+import Meal from '../models/meal';
 import { MEALS } from '../data/dummy-data';
 
 // Set my state
@@ -11,7 +12,6 @@ const initialState = {
 const mealReducer = (state, action) => {
   switch (action.type) {
     case 'get_meals':
-      console.log('meals', action.meals);
       return { ...state, meals: action.meals };
     case 'add_to_order':
       return { ...state, orders: state.orders.concat(action.order) };
@@ -32,12 +32,35 @@ const mealReducer = (state, action) => {
 };
 
 const getMeals = dispatch => {
-  return () => {
-    const meals = MEALS;
+  return async () => {
+    // ping the firebase api with a get request
+    const response = await fetch(
+      'https://rn-mock-bruce.firebaseio.com/meals.json'
+    );
+    // Check for error
+    if (!response.ok) {
+      return console.log('There is an error!');
+    }
+    // Create an empty array where I will store new meal objects
+    const resData = await response.json();
+    const loadedMeals = [];
 
-    console.log('getting here');
-
-    dispatch({ type: 'get_meals', meals });
+    // Loop through the data received from firebase creating meal object
+    // pushing each new meal object into empty array
+    for (const key in resData) {
+      loadedMeals.push(
+        new Meal(
+          key,
+          resData[key].title,
+          resData[key].affordability,
+          resData[key].imageUrl,
+          resData[key].price,
+          resData[key].favorite
+        )
+      );
+    }
+    // dispatch my type and meals object to reducer
+    dispatch({ type: 'get_meals', meals: loadedMeals });
   };
 };
 
@@ -63,6 +86,6 @@ const removeOrder = dispatch => {
 
 export const { Context, Provider } = createDataContext(
   mealReducer,
-  { addToOrder, getOrders, removeOrder, getMeals },
+  { getMeals, addToOrder, getOrders, removeOrder },
   initialState
 );

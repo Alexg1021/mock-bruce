@@ -14,13 +14,13 @@ const OrderScreen = props => {
 
   useEffect(() => {
     getMeals();
-    console.log(state);
+
     const listener = props.navigation.addListener('focus', () => {
       getMeals();
     });
+
     return listener;
-  });
-  // const meals = state.meals;
+  }, []);
 
   return (
     <View>
